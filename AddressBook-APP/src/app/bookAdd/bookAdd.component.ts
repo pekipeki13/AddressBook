@@ -32,8 +32,7 @@ export class BookAddComponent implements OnInit {
     };
 
     this.api.addContact(payload)
-      .subscribe(res => {
-          let id = res['_id'];
+      .subscribe(() => {
           this.router.navigate(['/']);
         }, (err) => {
           console.log(err);

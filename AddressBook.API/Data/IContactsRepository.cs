@@ -13,7 +13,5 @@ namespace AddressBook.API.Controllers.Data
         Task<int> DeleteContact(int? Id);
         Task UpdateContact(Contacts contacts);
         Task<List<Contacts>> SearchContactAsync(string txt);
-
-        Task<bool> UserExists(string firstname, string lastname); 
     }
 }

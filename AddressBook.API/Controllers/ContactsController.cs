@@ -18,7 +18,7 @@ namespace AddressBook.API.Controllers.Data
             contactsRepository = _contactsRepository;
         }
 
-        //GET ALL - http://localhost:5000/api/contacts/getcontacts
+        //GET CONTACTS
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -38,11 +38,12 @@ namespace AddressBook.API.Controllers.Data
             }
         }
 
+        //SEARCH
         [HttpPost]
         [Route("Search/{txt}")]
         public async Task<IActionResult> Post(string txt) 
         {
-             try
+            try
             {
                 var contacts = await contactsRepository.SearchContactAsync(txt);
                 if (contacts == null)
@@ -58,7 +59,7 @@ namespace AddressBook.API.Controllers.Data
             }
         }
 
-        //GET SINGLE - http://localhost:5000/api/contacts/getcontact?id=2
+        //GET CONTACT
         [HttpGet]
         [Route("Details/{id:int}")]
         public async Task<IActionResult> GetContact(int? Id)
@@ -71,7 +72,6 @@ namespace AddressBook.API.Controllers.Data
             try
             {
                 var contact = await contactsRepository.GetContact(Id);
-
                 if (contact == null)
                 {
                     return NotFound();
@@ -85,7 +85,7 @@ namespace AddressBook.API.Controllers.Data
             }
         }
 
-        //UPDATE SINGLE
+        //UPDATE CONTACT
         [HttpPut]
         [Route("Edit")]
         public async Task<IActionResult> Update([FromBody]Contacts model)
@@ -95,12 +95,10 @@ namespace AddressBook.API.Controllers.Data
                 try
                 {
                     await contactsRepository.UpdateContact(model);
-
                     return Ok();
                 }
                 catch (Exception)
                 {
-                    
                     return BadRequest();
                 }
             }
@@ -108,7 +106,7 @@ namespace AddressBook.API.Controllers.Data
             return BadRequest();
         }
 
-        //ADD NEW - http://localhost:5000/api/contacts/addcontact [FromBody]
+        //CREATE CONTACT
         [HttpPost]
         [Route("Create")]
         public async Task<IActionResult> AddContact([FromBody]Contacts model)
@@ -129,17 +127,13 @@ namespace AddressBook.API.Controllers.Data
                 }
                 catch (Exception)
                 {
-
                     return BadRequest();
                 }
-
             }
-
             return BadRequest();
         }
 
-
-        //DELETE SINGLE - http://localhost:5000/api/contacts/deletecontact?id=3
+        //DELETE CONTACT
         [HttpDelete]
         [Route("Delete/{id}")]
         public async Task<IActionResult> DeleteContact(int? Id)
@@ -162,13 +156,8 @@ namespace AddressBook.API.Controllers.Data
             }
             catch (Exception)
             {
-
                 return BadRequest();
             }
         }
-
-        
-
-
     }
 }

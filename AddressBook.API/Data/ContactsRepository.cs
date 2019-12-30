@@ -14,7 +14,7 @@ namespace AddressBook.API.Controllers.Data
         {
              _context = context;
         }
-        //GET All-Contacts
+        //GET CONTACTS
         public async Task<List<Contacts>> GetContacts()
         {
             if (_context != null)
@@ -23,7 +23,7 @@ namespace AddressBook.API.Controllers.Data
             }
             return null;
         }
-        //GET Single-Contact 
+        //GET CONTACT
         public async Task<Contacts> GetContact(int? Id)
         {
             if (_context != null)
@@ -33,7 +33,7 @@ namespace AddressBook.API.Controllers.Data
             return null;
         }
 
-        //ADD New-Contact
+        //CREATE CONTACT
         public async Task<int> AddContact(Contacts contacts)
         {
             if (_context != null)
@@ -48,10 +48,6 @@ namespace AddressBook.API.Controllers.Data
         }
 
         public async Task<List<Contacts>> SearchContactAsync(string txt){
-            // var contact = await _context.Contacts.FirstOrDefaultAsync(x => x.FirstName.Contains(txt) || x.LastName.Contains(txt) ||
-            // x.Address.Contains(txt) || x.Telephone.Contains(txt) || txt == string.Empty);
-
-            // return contact.ToListAsync();
 
             if (_context != null)
             {
@@ -61,7 +57,7 @@ namespace AddressBook.API.Controllers.Data
             return null;
         }
 
-        //DELETE Single-Contact
+        //DELETE CONTACT
         public async Task<int> DeleteContact(int? Id)
         {
             int result = 0;
@@ -81,7 +77,7 @@ namespace AddressBook.API.Controllers.Data
             return result;
         }
 
-        //UPDATE Single-Contact
+        //UPDATE CONTACT
         public async Task UpdateContact(Contacts contacts)
         {
             if (_context != null)
@@ -90,16 +86,5 @@ namespace AddressBook.API.Controllers.Data
                 await _context.SaveChangesAsync();
             }
         }
-
-        //CHECK User-Exists
-        public async Task<bool> UserExists(string firstname, string lastname)
-        {
-            if (await _context.Contacts.AnyAsync(x => x.FirstName == firstname && x.LastName == lastname)) 
-                return true;
-
-            return false;
-        }
-
-
     }
 }

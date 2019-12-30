@@ -5,12 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Contacts } from '../models/contacts';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'app-bookEdit',
   templateUrl: './bookEdit.component.html',
   styleUrls: ['./bookEdit.component.css']
 })
 export class BookEditComponent implements OnInit {
-  page = 4;
   contactForm: FormGroup;
   id: number = null;
 

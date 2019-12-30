@@ -33,27 +33,26 @@ export class ApiService {
 
   deleteContact(id: number): Observable<Contacts> {
     return this.http.delete<Contacts>(this.coreUrl + 'api/Contacts/Delete/' + id, this.httpOptions).pipe(
-      tap(_ => console.log(`deleted todo id=${id}`)),
-      catchError(this.handleError<Contacts>('deletetodo'))
+      tap(_ => console.log(`deleted contact id=${id}`)),
+      catchError(this.handleError<Contacts>(`deleteContact with id=${id}`))
     );
   }
 
   getContact(id: number): Observable<Contacts> {
     return this.http.get<Contacts>(this.coreUrl + 'api/Contacts/Details/' + id).pipe(
-      tap(_ => console.log(`fetched todo id=${id}`)),
-      catchError(this.handleError<Contacts>(`getTodo id=${id}`))
+      tap(_ => console.log(`fetched contact with id=${id}`)),
+      catchError(this.handleError<Contacts>(`getContact id=${id}`))
     );
   }
 
   updateContact(id, contact): Observable<any> {
     return this.http.put(this.coreUrl + 'api/Contacts/Edit/', contact).pipe(
-      tap(_ => console.log('Updated contact with id:' + id)),
+      tap(_ => console.log(`Updated contact with id=${id}`)),
       catchError(this.handleError)
     );
   }
 
   postSearch(searchText: string): Observable<Contacts[]> {
-    console.log(searchText.length);
     if (searchText.length < 1) {
       return this.http.get<Contacts[]>(this.coreUrl + 'api/Contacts/', this.httpOptions)
       .pipe(
@@ -74,13 +73,5 @@ export class ApiService {
       console.error(error);
       return of(result as T);
     };
-
-    // searchContacts(searchText) {
-    //   return this.http.post(this.coreUrl + 'api/Contacts/Search/' + searchText, searchText)
-    //     .pipe(map(
-    //       response => {
-    //         return response;
-    //       }));
-    // }
   }
 }
