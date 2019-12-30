@@ -19,7 +19,7 @@ namespace AddressBook.API.Controllers.Data
         {
             if (_context != null)
             {
-                return await _context.Contacts.ToListAsync();
+                return await _context.Contacts.OrderByDescending(x => x.Id).ToListAsync();
             }
             return null;
         }
