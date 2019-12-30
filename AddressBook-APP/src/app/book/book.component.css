@@ -1,0 +1,12 @@
+.table td, .table th {
+    padding: .35rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+.fa {
+    color:#2199e8;
+}
+
+th{
+    font-weight: 500;
+}

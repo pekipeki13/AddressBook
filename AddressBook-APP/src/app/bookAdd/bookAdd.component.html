@@ -1,0 +1,41 @@
+<div class="row mt-5">
+  <div class=" mx-auto">
+      <h2 class="text-center">Add Contact</h2>
+      <div class="card mt-3">
+          <div class="card-body">
+            <form [formGroup]="contactForm" (ngSubmit)="addContact()">
+              <div class="form-group row">
+                <label class=" control-label col-md-12"><i class="fa fa-user"></i> First Name:</label>
+                <div class="col-md-12">
+                    <input class="form-control" type="text" formControlName="firstName">
+                </div>
+            </div>
+            <div class="form-group row">
+              <label class=" control-label col-md-12"><i class="fa fa-user"></i> Last Name:</label>
+              <div class="col-md-12">
+                  <input class="form-control" type="text" formControlName="lastName">
+              </div>
+          </div>
+            <div class="form-group row">
+                <label class="control-label col-md-12" for="address"><i class="fa fa-map-marker"></i> Address:</label>
+                <div class="col-md-12">
+                    <input class="form-control" type="text" formControlName="address">
+                </div>
+            </div>
+            <div class="form-group row">
+              <label class="control-label col-md-12" for="Telephone"><i class="fa fa-phone"></i> Telephone:</label>
+              <div class="col-md-12">
+                  <input class="form-control" type="text" formControlName="telephone">
+              </div>
+          </div>
+          
+            <hr />
+            <div class="form-group">
+                <button type="submit" class=" btn btn-outline-success mr-2" [disabled]="contactForm.invalid">Save contact</button>
+                <button class="btn btn-outline-danger" (click)="cancel()">Back</button>
+            </div>
+            </form>
+          </div>
+      </div>
+  </div>
+</div>
